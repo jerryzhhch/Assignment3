@@ -70,7 +70,7 @@ final class CoreDataService {
     func deleteBook(_ book: Book) {
         // set a NSFetchRequest
         let fetchRequest = NSFetchRequest<BookData>(entityName: "BookData")
-        
+        fetchRequest.predicate = NSPredicate(format: "id = %@", book.id)
         do {
             let data = try context.fetch(fetchRequest)
             let dataToDelete = data[0] as NSManagedObject
